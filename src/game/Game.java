@@ -21,13 +21,11 @@ public class Game {
 
     public void playNextTurn() {
         if (hasActionWaiting() && actionWaiting.isActionPossible(parcel)) {
-            score = actionWaiting.playAction(parcel);
+            score += actionWaiting.playAction(parcel);
         }
         actionWaiting = null;
-        if (parcel.hasPlant()) {
-            parcel.growPlant();
-            parcel.feedPlantWithNutrient();
-        }
+        parcel.growPlant();
+        parcel.feedPlantWithNutrient();
     }
 
     private boolean hasActionWaiting() {

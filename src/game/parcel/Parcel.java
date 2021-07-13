@@ -34,14 +34,18 @@ public class Parcel {
     }
 
     public void growPlant() {
-        plant.grow();
+        if (hasPlant()) {
+            plant.grow();
+        }
     }
 
     public void feedPlantWithNutrient() {
-        if (soil.hasBadQuality()) {
-            plant.kill();
-        } else {
-            soil.alterQuality(- plant.getNutrientNeedPercentage());
+        if (hasPlant()){
+            if (soil.hasBadQuality()) {
+                plant.kill();
+            } else {
+                soil.alterQuality(-plant.getNutrientNeedPercentage());
+            }
         }
     }
 
