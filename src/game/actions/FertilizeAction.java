@@ -1,6 +1,6 @@
-package actions;
+package game.actions;
 
-import parcel.Parcel;
+import game.parcel.Parcel;
 
 public class FertilizeAction extends Action{
     private static final int DEFAULT_SOIL_QUALITY_INCREASE_PERCENTAGE = 30;

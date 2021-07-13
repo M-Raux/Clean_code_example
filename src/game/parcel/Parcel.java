@@ -1,9 +1,8 @@
-package parcel;
+package game.parcel;
 
-import actions.Action;
-import parcel.plant.Plant;
-import parcel.plant.PlantType;
-import parcel.soil.Soil;
+import game.parcel.plant.Plant;
+import game.parcel.plant.PlantType;
+import game.parcel.soil.Soil;
 
 public class Parcel {
     private Plant plant;
@@ -12,21 +11,6 @@ public class Parcel {
     public Parcel() {
         this.plant = null;
         this.soil = new Soil();
-    }
-
-    public int playNextTurn(Action action) {
-        int pointsEarned = 0;
-        if (action.isActionPossible(this)) {
-            pointsEarned = action.playAction(this);
-        }
-        if (hasPlant()) {
-            plant.grow();
-            soil.alterQuality(plant.getNutrientNeedPercentage());
-            if (soil.hasBadQuality()) {
-                plant.kill();
-            }
-        }
-        return pointsEarned;
     }
 
     public boolean hasPlant() {
@@ -47,6 +31,18 @@ public class Parcel {
 
     public int getPlantValue() {
         return plant.getPlantValue();
+    }
+
+    public void growPlant() {
+        plant.grow();
+    }
+
+    public void feedPlantWithNutrient() {
+        if (soil.hasBadQuality()) {
+            plant.kill();
+        } else {
+            soil.alterQuality(plant.getNutrientNeedPercentage());
+        }
     }
 
     @Override

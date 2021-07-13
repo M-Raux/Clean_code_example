@@ -1,6 +1,6 @@
-package actions;
+package game.actions;
 
-import parcel.plant.PlantType;
+import game.parcel.plant.PlantType;
 import exceptions.NoSuchActionException;
 import exceptions.NoSuchPlantTypeException;
 

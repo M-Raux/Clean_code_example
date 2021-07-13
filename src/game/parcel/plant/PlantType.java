@@ -1,4 +1,4 @@
-package parcel.plant;
+package game.parcel.plant;
 
 import lombok.Getter;
 

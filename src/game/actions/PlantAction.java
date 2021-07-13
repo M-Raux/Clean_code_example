@@ -1,7 +1,7 @@
-package actions;
+package game.actions;
 
-import parcel.Parcel;
-import parcel.plant.PlantType;
+import game.parcel.Parcel;
+import game.parcel.plant.PlantType;
 
 public class PlantAction extends Action{
     private final PlantType plantType;

@@ -1,4 +1,4 @@
-package parcel.soil;
+package game.parcel.soil;
 
 public class Soil {
     private static final int MAX_SOIL_QUALITY = 1000;

@@ -1,6 +1,6 @@
-package actions;
+package game.actions;
 
-import parcel.Parcel;
+import game.parcel.Parcel;
 
 public abstract class Action {
     public abstract int playAction(Parcel parcel);

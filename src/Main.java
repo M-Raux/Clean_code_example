@@ -1,17 +1,18 @@
-import actions.Action;
-import actions.ActionFactory;
-import parcel.Parcel;
+import game.Game;
+import game.actions.Action;
+import game.actions.ActionFactory;
 
 public class Main {
     public static void main(String[] args) {
-        Parcel parcel = new Parcel();
+        Game game = new Game();
         ActionFactory actionFactory = new ActionFactory();
 
         try {
             String receivedAction = receiveAction();
             Action action = actionFactory.getAction(receivedAction);
-            int pointsGained = parcel.playNextTurn(action);
-            System.out.printf("TURN DONE SUCCESSFULLY AND EARNED %d POINTS\n%s", pointsGained, parcel);
+            game.setActionWaiting(action);
+            game.playNextTurn();
+            System.out.printf("TURN DONE SUCCESSFULLY AND EARNED %d POINTS\n%s", game.getScore(), game);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

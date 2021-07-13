@@ -1,7 +1,7 @@
-package actions;
+package game.actions;
 
 
-import parcel.Parcel;
+import game.parcel.Parcel;
 
 public class HarvestAction extends Action{
     @Override
