@@ -8,7 +8,6 @@ import java.util.Arrays;
 public class ActionFactory {
     private static final String[] VALID_PLANTS = {"A", "B"};
 
-
     public Action getAction(String action) throws NoSuchActionException, NoSuchPlantTypeException {
         if (action == null) {
             throw new NoSuchActionException("null");

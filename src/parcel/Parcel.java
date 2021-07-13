@@ -1,24 +1,17 @@
 package parcel;
 
 import actions.Action;
+import parcel.plant.Plant;
 
 public class Parcel {
     private static final int MAX_SOIL_QUALITY = 1000;
-    private static final int NO_PLANT_VALUE = -1;
-    private static final int TYPE_A_NUTRIENT_NEED = 10;
-    private static final int TYPE_B_NUTRIENT_NEED = 20;
-    private static final int TYPE_A_HARVEST_GAIN = 1;
-    private static final int TYPE_B_HARVEST_GAIN = 2;
-    private static final int PLANT_AGE_TO_BE_READY_TO_HARVEST = 10;
-    private static final int PLANT_LIFESPAN = 11;
 
-    private int plantGrowth;
-    private String plantType;
+    private Plant plant;
 
     private int soilQuality;
 
     public Parcel() {
-        this.plantGrowth = -1;
+        this.plant = null;
         this.soilQuality = MAX_SOIL_QUALITY;
     }
 
@@ -28,58 +21,33 @@ public class Parcel {
             pointsEarned = action.playAction(this);
         }
         if (hasPlant()) {
-            growPlant();
+            plant.grow();
             alterSoilQualityFromPlant();
         }
         return pointsEarned;
     }
 
     public void plant(String plantType) {
-        this.plantType = plantType;
-        plantGrowth = 0;
+        this.plant = new Plant(plantType);
     }
 
     private void alterSoilQualityFromPlant() {
-        if (plantType.equals("A")) {
-            soilQuality = Math.max(0, soilQuality - TYPE_A_NUTRIENT_NEED);
-        } else if (plantType.equals("B")) {
-            soilQuality = Math.max(0, soilQuality - TYPE_B_NUTRIENT_NEED);
-        }
+        soilQuality = Math.max(0, soilQuality - plant.getNutrientNeedPercentage() * MAX_SOIL_QUALITY / 100);
         if (soilQuality == 0) {
-            killPlant();
+            plant.kill();
         }
-    }
-
-    private void growPlant() {
-        plantGrowth++;
-    }
-
-    private void killPlant() {
-        plantGrowth = 110;
-    }
-
-    public int getPlantValue() {
-        int plantValue = 0;
-        if (plantIsReady()) {
-            if (plantType.equals("A")) {
-                plantValue = TYPE_A_HARVEST_GAIN;
-            } else if (plantType.equals("B")) {
-                plantValue = TYPE_B_HARVEST_GAIN;
-            }
-        }
-        return plantValue;
-    }
-
-    private boolean plantIsReady() {
-        return plantGrowth >= PLANT_AGE_TO_BE_READY_TO_HARVEST && plantGrowth <= PLANT_LIFESPAN;
     }
 
     public boolean hasPlant() {
-        return plantGrowth != NO_PLANT_VALUE;
+        return plant != null;
     }
 
     public void removePlant() {
-        plantGrowth = NO_PLANT_VALUE;
+        plant = null;
+    }
+
+    public int getPlantValue() {
+        return plant.getPlantValue();
     }
 
     public void increaseSoilQuality(int percentage) {
@@ -88,9 +56,8 @@ public class Parcel {
 
     @Override
     public String toString() {
-        return "parcel.Parcel{" +
-                "plantGrowth=" + plantGrowth +
-                ", plantType=" + plantType +
+        return "Parcel{" +
+                "plant=" + plant +
                 ", soilQuality=" + soilQuality +
                 '}';
     }
