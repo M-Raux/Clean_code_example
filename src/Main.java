@@ -10,7 +10,7 @@ public class Main {
         try {
             String receivedAction = receiveAction();
             Action action = actionFactory.getAction(receivedAction);
-            game.setActionWaiting(action);
+            game.requestAction(action);
             game.playNextTurn();
             System.out.printf("TURN DONE SUCCESSFULLY AND EARNED %d POINTS\n%s", game.getScore(), game);
         } catch (Exception e) {

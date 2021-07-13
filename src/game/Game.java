@@ -3,11 +3,9 @@ package game;
 import game.actions.Action;
 import game.parcel.Parcel;
 import lombok.Getter;
-import lombok.Setter;
 
 public class Game {
     private final Parcel parcel;
-    @Setter
     private Action actionWaiting;
     @Getter
     private int score;
@@ -15,6 +13,10 @@ public class Game {
     public Game() {
         parcel = new Parcel();
         score = 0;
+    }
+
+    public void requestAction(Action action) {
+        actionWaiting = action;
     }
 
     public void playNextTurn() {
