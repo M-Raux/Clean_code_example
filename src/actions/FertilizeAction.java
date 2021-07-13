@@ -7,7 +7,7 @@ public class FertilizeAction extends Action{
 
     @Override
     public int playAction(Parcel parcel) {
-        parcel.increaseSoilQuality(DEFAULT_SOIL_QUALITY_INCREASE_PERCENTAGE);
+        parcel.alterSoilQuality(DEFAULT_SOIL_QUALITY_INCREASE_PERCENTAGE);
         return 0;
     }
 
