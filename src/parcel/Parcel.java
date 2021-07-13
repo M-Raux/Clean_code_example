@@ -21,7 +21,7 @@ public class Parcel {
         }
         if (hasPlant()) {
             plant.grow();
-            soil.alterQuality(plant.getNutrientNeedPercentage());
+            soil.alterQuality(- plant.getNutrientNeedPercentage());
             if (soil.hasBadQuality()) {
                 plant.kill();
             }
