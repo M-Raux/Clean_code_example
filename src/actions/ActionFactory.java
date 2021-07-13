@@ -1,12 +1,12 @@
 package actions;
 
+import parcel.plant.PlantType;
 import exceptions.NoSuchActionException;
 import exceptions.NoSuchPlantTypeException;
 
 import java.util.Arrays;
 
 public class ActionFactory {
-    private static final String[] VALID_PLANTS = {"A", "B"};
 
     public Action getAction(String action) throws NoSuchActionException, NoSuchPlantTypeException {
         if (action == null) {
@@ -19,7 +19,7 @@ public class ActionFactory {
         } else if (action.startsWith("PLANT")) {
             String chosenPlant = action.substring(5);
             if (validPlant(chosenPlant)) {
-                return new PlantAction(chosenPlant);
+                return new PlantAction(PlantType.valueOf(chosenPlant));
             } else {
                 throw new NoSuchPlantTypeException(chosenPlant);
             }
@@ -28,6 +28,7 @@ public class ActionFactory {
     }
 
     private boolean validPlant(String chosenPlant) {
-        return Arrays.asList(VALID_PLANTS).contains(chosenPlant);
+        return Arrays.stream(PlantType.values())
+                .anyMatch(plantType -> plantType.name().equals(chosenPlant));
     }
 }

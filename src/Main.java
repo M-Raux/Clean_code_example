@@ -18,6 +18,6 @@ public class Main {
     }
 
     private static String receiveAction() {
-        return "PLANTA";
+        return "PLANTCARROT";
     }
 }

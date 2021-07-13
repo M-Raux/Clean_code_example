@@ -1,11 +1,12 @@
 package actions;
 
 import parcel.Parcel;
+import parcel.plant.PlantType;
 
 public class PlantAction extends Action{
-    private final String plantType;
+    private final PlantType plantType;
 
-    public PlantAction(String plantType) {
+    public PlantAction(PlantType plantType) {
         this.plantType = plantType;
     }
 

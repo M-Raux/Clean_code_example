@@ -1,13 +1,14 @@
 package parcel;
 
 import actions.Action;
+import lombok.Getter;
 import parcel.plant.Plant;
+import parcel.plant.PlantType;
 
 public class Parcel {
     private static final int MAX_SOIL_QUALITY = 1000;
 
     private Plant plant;
-
     private int soilQuality;
 
     public Parcel() {
@@ -27,7 +28,7 @@ public class Parcel {
         return pointsEarned;
     }
 
-    public void plant(String plantType) {
+    public void plant(PlantType plantType) {
         this.plant = new Plant(plantType);
     }
 
