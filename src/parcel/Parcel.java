@@ -1,3 +1,8 @@
+package parcel;
+
+import exceptions.NoSuchActionException;
+import exceptions.NoSuchPlantTypeException;
+
 import java.util.Arrays;
 
 public class Parcel {
@@ -12,9 +17,6 @@ public class Parcel {
     private static final int PLANT_LIFESPAN = 11;
     private static final String[] PLANT_TYPES = {"A", "B"};
 
-    public static final int INVALID_PLANT_ERROR = -1;
-    public static final int INVALID_ACTION_ERROR = -2;
-
     private int plantGrowth;
     private String plantType;
     private int soilQuality;
@@ -25,7 +27,7 @@ public class Parcel {
         this.plantType = "";
     }
 
-    public int playNextTurn(String action) {
+    public int playNextTurn(String action) throws NoSuchActionException, NoSuchPlantTypeException {
         int pointsEarned = 0;
         if (action != null) {
             pointsEarned = playAction(action);
@@ -44,7 +46,7 @@ public class Parcel {
         return soilQuality == 0;
     }
 
-    private int playAction(String action) {
+    private int playAction(String action) throws NoSuchActionException, NoSuchPlantTypeException {
         int pointsEarned = 0;
         if (action.equals("FERTILIZE")) {
             pointsEarned = fertilize();
@@ -54,7 +56,7 @@ public class Parcel {
             String chosenPlantType = action.substring(5);
             pointsEarned = plant(chosenPlantType);
         } else {
-            return INVALID_ACTION_ERROR;
+            throw new NoSuchActionException(action);
         }
         return pointsEarned;
     }
@@ -73,13 +75,13 @@ public class Parcel {
         return pointsEarned;
     }
 
-    private int plant(String chosenPlantType) {
+    private int plant(String chosenPlantType) throws NoSuchPlantTypeException {
         if (!hasPlant()) {
             if (checkValidPlantType(chosenPlantType)) {
                 plantGrowth = 0;
                 plantType = chosenPlantType;
             } else {
-                return INVALID_PLANT_ERROR;
+                throw new NoSuchPlantTypeException(chosenPlantType);
             }
         }
         return 0;
@@ -131,7 +133,7 @@ public class Parcel {
 
     @Override
     public String toString() {
-        return "Parcel{" +
+        return "parcel.Parcel{" +
                 "plantGrowth=" + plantGrowth +
                 ", plantType=" + plantType +
                 ", soilQuality=" + soilQuality +
