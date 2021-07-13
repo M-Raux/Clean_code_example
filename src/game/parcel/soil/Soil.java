@@ -10,7 +10,7 @@ public class Soil {
     }
 
     public void alterQuality(int percentage) {
-        quality = Math.min(MAX_SOIL_QUALITY, Math.max(0, quality - percentage * MAX_SOIL_QUALITY / 100));
+        quality = Math.min(MAX_SOIL_QUALITY, Math.max(0, quality + percentage * MAX_SOIL_QUALITY / 100));
     }
 
     public boolean hasBadQuality() {

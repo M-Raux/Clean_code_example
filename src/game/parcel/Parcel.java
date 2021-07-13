@@ -41,7 +41,7 @@ public class Parcel {
         if (soil.hasBadQuality()) {
             plant.kill();
         } else {
-            soil.alterQuality(plant.getNutrientNeedPercentage());
+            soil.alterQuality(- plant.getNutrientNeedPercentage());
         }
     }
 
