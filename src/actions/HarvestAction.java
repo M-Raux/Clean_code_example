@@ -5,10 +5,13 @@ import parcel.Parcel;
 
 public class HarvestAction extends Action{
     @Override
-    public int playAction(Parcel parcel) {
-        int pointsGained = parcel.getPlantValue();
+    public int getActionValue(Parcel parcel) {
+        return parcel.getPlantValue();
+    }
+
+    @Override
+    public void playAction(Parcel parcel) {
         parcel.removePlant();
-        return pointsGained;
     }
 
     @Override
