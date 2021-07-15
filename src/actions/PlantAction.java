@@ -11,9 +11,13 @@ public class PlantAction extends Action{
     }
 
     @Override
-    public int playAction(Parcel parcel) {
-        parcel.plant(plantType);
+    public int getActionValue(Parcel parcel) {
         return 0;
+    }
+
+    @Override
+    public void playAction(Parcel parcel) {
+        parcel.plant(plantType);
     }
 
     @Override
