@@ -18,7 +18,8 @@ public class Parcel {
     public int playNextTurn(Action action) {
         int pointsEarned = 0;
         if (action.isActionPossible(this)) {
-            pointsEarned = action.playAction(this);
+            pointsEarned = action.getActionValue(this);
+            action.playAction(this);
         }
         if (hasPlant()) {
             plant.grow();
