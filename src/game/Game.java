@@ -21,7 +21,8 @@ public class Game {
 
     public void playNextTurn() {
         if (hasActionWaiting() && actionWaiting.isActionPossible(parcel)) {
-            score += actionWaiting.playAction(parcel);
+            score += actionWaiting.getActionValue(parcel);
+            actionWaiting.playAction(parcel);
         }
         actionWaiting = null;
         parcel.growPlant();
