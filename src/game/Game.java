@@ -20,13 +20,18 @@ public class Game {
     }
 
     public void playNextTurn() {
+        playAction();
+        if (parcel.hasPlant()) {
+            parcel.playPlantLifecycle();
+        }
+    }
+
+    private void playAction() {
         if (hasActionWaiting() && actionWaiting.isActionPossible(parcel)) {
             score += actionWaiting.getActionValue(parcel);
             actionWaiting.playAction(parcel);
         }
         actionWaiting = null;
-        parcel.growPlant();
-        parcel.feedPlantWithNutrient();
     }
 
     private boolean hasActionWaiting() {

@@ -25,28 +25,21 @@ public class Parcel {
         this.plant = new Plant(plantType);
     }
 
-    public void alterSoilQuality(int percentage) {
-        soil.alterQuality(percentage);
-    }
-
     public int getPlantValue() {
         return plant.getPlantValue();
     }
 
-    public void growPlant() {
-        if (hasPlant()) {
+    public void playPlantLifecycle() {
+        if (soil.hasBadQuality()) {
+            plant.kill();
+        } else {
             plant.grow();
+            soil.alterQuality(-plant.getNutrientNeedPercentage());
         }
     }
 
-    public void feedPlantWithNutrient() {
-        if (hasPlant()){
-            if (soil.hasBadQuality()) {
-                plant.kill();
-            } else {
-                soil.alterQuality(-plant.getNutrientNeedPercentage());
-            }
-        }
+    public void alterSoilQuality(int percentage) {
+        soil.alterQuality(percentage);
     }
 
     @Override
@@ -56,4 +49,6 @@ public class Parcel {
                 ", soil=" + soil +
                 '}';
     }
+
+
 }
