@@ -31,13 +31,17 @@ public class Parcel {
             pointsEarned = playAction(action);
         }
         if (hasPlant()) {
-            growPlant();
-            alterSoilQualityFromPlant();
-            if (hasBadSoilQuality()) {
-                killPlant();
-            }
+            playPlantLifecycle();
         }
         return pointsEarned;
+    }
+
+    private void playPlantLifecycle() {
+        growPlant();
+        alterSoilQualityFromPlant();
+        if (hasBadSoilQuality()) {
+            killPlant();
+        }
     }
 
     private boolean hasBadSoilQuality() {
