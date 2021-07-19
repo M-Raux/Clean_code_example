@@ -21,13 +21,17 @@ public class Parcel {
             action.playAction(this);
         }
         if (hasPlant()) {
-            plant.grow();
-            soil.alterQuality(- plant.getNutrientNeedPercentage());
-            if (soil.hasBadQuality()) {
-                plant.kill();
-            }
+            playPlantLifecycle();
         }
         return pointsEarned;
+    }
+
+    private void playPlantLifecycle() {
+        plant.grow();
+        soil.alterQuality(- plant.getNutrientNeedPercentage());
+        if (soil.hasBadQuality()) {
+            plant.kill();
+        }
     }
 
     public boolean hasPlant() {
