@@ -29,10 +29,17 @@ public class Parcel {
             action.playAction(this);
         }
         if (hasPlant()) {
-            growPlant();
-            alterSoilQualityFromPlant();
+            playPlantLifecycle();
         }
         return pointsEarned;
+    }
+
+    private void playPlantLifecycle() {
+        growPlant();
+        alterSoilQualityFromPlant();
+        if (soilQuality == 0) {
+            killPlant();
+        }
     }
 
     public void plant(String plantType) {
@@ -45,9 +52,6 @@ public class Parcel {
             soilQuality = Math.max(0, soilQuality - TYPE_A_NUTRIENT_NEED);
         } else if (plantType.equals("B")) {
             soilQuality = Math.max(0, soilQuality - TYPE_B_NUTRIENT_NEED);
-        }
-        if (soilQuality == 0) {
-            killPlant();
         }
     }
 
